@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title><%=page_title%></title>
+    <!-- DataTables CSS -->
+    <link href="../admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../admin/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../agency/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../agency/css/agency.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../agency/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+</head>
+
+<body id="other">
+    <div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll" onclick="home()" style="cursor:pointer;">
+                
+                <a class="navbar-brand page-scroll" ><i class="fa fa-phone"></i>Calcutta Calls</a>
+            </div>
+         
+    </nav>
+    <div id="page-wrapper" style="min-height: 320px;">
+       
+        
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading"> All Contacts </div>
+                    
+                    <div class="panel-body">
+                        
+                                
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table aria-describedby="dataTables-example_info" role="grid" class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th><button class="btn btn-outline btn-info" type="button" onclick="add()" style="cursor:pointer;">Add Info</button></th>
+                                                    </tr>
+                                                    <tr role="row">
+                                                        
+                                                        <th aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 177px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting_asc">Name</th>
+                                                        <th aria-label="Surname: activate to sort column ascending" style="width: 199px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting">Surname</th>
+                                                        <th aria-label="Email Id: activate to sort column ascending" style="width: 180px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting">Email Id</th>
+                                                        <th aria-label="Address: activate to sort column ascending" style="width: 153px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting">Address</th>
+                                                        <th aria-label="Pin Code: activate to sort column ascending" style="width: 111px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting">Pin Code</th>
+                                                        <th aria-label="Phone Number: activate to sort column descending" aria-sort="ascending" style="width: 177px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting_asc">Phone Number</th>
+                                                        <th aria-label="Profession: activate to sort column descending" aria-sort="ascending" style="width: 177px;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting_asc">Profession</th>
+                                                        <th aria-label="Action" style="width: 177px !important;" colspan="1" rowspan="1" aria-controls="dataTables-example" tabindex="0" class="sorting_asc">Action</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if(data.length){ 
+                                
+                                                         for(var i = 0;i < data.length;i++) { %>  
+                 
+                                                            <tr class="gradeA">
+                                                            <td><%=data[i].fname%></td>
+                                                            <td><%=data[i].lname%></td>
+                                                            <td><%=data[i].email%></td>
+                                                            <td><%=data[i].address%></td>
+                                                            <td><%=data[i].pincode%></td>
+                                                            <td><%=data[i].phoneno%></td>
+                                                            <td><%=data[i].profession%></td>
+                                                            <td>
+                                                                <a class="btn btn-outline btn-warning a-inside edit" href="../contacts/edit/<%=data[i].phoneno%>"><i class="fa fa-pencil-square-o"></i>Edit</a>                       
+                                                                <a class="btn btn-outline btn-danger a-inside delete" href="../contacts/delete/<%=data[i].phoneno%>"><i class="fa fa-trash"></i>Delete</a>                       
+                                                            </td>
+                                                            </tr>
+                
+                                                        <% }
+            
+                                                    }else{ %>
+                                                         <tr>
+                                                            <td colspan="3">No user</td>
+                                                         </tr>
+                                                    <% } %>
+                                               </tbody>
+                                           </table>
+                                    </div>
+                                    </div>
+                                    
+                               </div></div>
+                            
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <!-- Use the modals below to showcase details about your portfolio projects! -->
+
+    
+   </div>
+
+
+   
+    <!-- jQuery -->
+    <script src="../agency/js/jquery.js"></script>
+    <script src="../admin/dist/js/sb-admin-2.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../agency/js/bootstrap.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="../admin/bower_components/metisMenu/dist/metisMenu.js"></script>
+    <script src="../admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+<!-- Custom Theme JavaScript -->
+        <script>
+            $(window).load(function() {
+                $('#dataTables-example').DataTable({
+                        responsive: true
+                });
+            });
+        </script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../agency/js/classie.js"></script>
+    <script src="../agency/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../agency/js/jqBootstrapValidation.js"></script>
+    <script src="../agency/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../agency/js/agency.js"></script>
+    
+    <script>
+        function home(){
+            location.href="/";
+        }
+        function add(){
+            location.href="/contacts/add";
+        }
+    </script>
+
+
+</body>
+
+</html>
